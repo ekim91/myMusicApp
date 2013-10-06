@@ -114,7 +114,7 @@ Template.lists.events(okCancelEvents(
       Session.set('editing_PlayListname', null);
     }
   }));
-
+}
 
 var myMusicAppRouter = Backbone.Router.extend({
   routes: {
@@ -132,7 +132,7 @@ var myMusicAppRouter = Backbone.Router.extend({
 });
 
 Router = new myMusicAppRouter;
-
+if(Meteor.isServer){
 Meteor.startup(function () {
   Backbone.history.start({pushState: true});
 });
