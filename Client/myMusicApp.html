@@ -1,0 +1,80 @@
+<head>
+  <title>Music Player</title>
+  <link type="text/css" href="/sking/jplayer.blue.monday.css" rel="stylesheet"/>
+  <script type="text/javascript" scr="myMusicApp/js/jquery.jplayer.min.js"></script>
+</head>
+<body>
+  <div id="main-section">
+    {{> jplayer}}
+  </div>
+  <div id="side-section">
+    {{> PlayList}}
+  </div>
+
+</body>
+
+<template name="jplayer">
+  <div id="jquery_jplayer_1" class="jp-player">
+  <div id="jp_containter_1" class ="jp_audio">
+    <div class="jp-type-single">
+      <div class="jp-gui jp-interface">
+        <ul class="jp-controls">
+  
+  <!--creating buttons on player-->
+
+  <li> <a href="javascript:void(0)" class="jp-play" tabindex="1">play</a></li>
+  <li> <a href="javascript:void(0)" class="jp-pause" tabindex="1">pause</a></li>
+  <li> <a href="javascript:void(0)" class="jp-stop" tabindex="1">stop</a></li>
+  <li> <a href="javascript:void(0)" class="jp-mute" tableindex="1">mute</a></li>
+  <li> <a href="javascript:void(0)" class="jp-add" tableindex="1">add</a></li>
+
+  <!--creating UI-->
+
+  <div class="jp-progress">
+    <div class="jp-seek-bar">
+      <div class="jp-play-bar">
+      </div>
+    </div>
+  </div>
+  <div class="jp-volume-bar">
+    <div class="jp-volume-bar-value">
+    </div>
+  </div>
+  <div class="jp-current-time"></div>
+  <div class="jp-duration"></div>
+  </div>
+  <div class="jp-title">
+    <ul>
+      <li> 'Title Goes Here' </li>
+    </ul>
+  </div>
+  </div>
+</template>
+
+<template name="PlayLists">
+<h1> Play Lists </h1>
+  {{#if loading}}
+    <div id="PlayLists">Loading Your PlayList(s)</div>
+  {{else}}
+    <div id="PlayLists">
+      {{#each PlayLists}}
+      <div class="PlayLists {{Selected}}">
+        {{#if editing}}
+          <div class="edit">
+            <input class="PlayList-name-input" id="PlayList-name-input" type="text" value="{{name}}" />
+          </div>
+          {{else}}
+          <div class="display">
+            <a class="PlayList-name {{name_class}}" href="/{{_id}}">
+              {{name}}
+            </a>
+          </div>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+    <div id="createPlayList">
+      <input type="text" id="new-PlayList" placeholder="New PlayList" />
+    </div>
+  {{/if}}
+</template>
